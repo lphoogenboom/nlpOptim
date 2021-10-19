@@ -24,6 +24,7 @@ vars.alpha_w = [0.085,0.2,0.6];  % Absorbation [-]
 vars.tau_w = [0.9,NaN,NaN];    % Transmittance [-]
 % with w[1,2,3]=[Facade,Ceiling,Floor]
 
+vars.Beta = 10^6; %penalty factor [K^-2]
 vars.dt = 300; %5 min
 
 %% Iterative variables
@@ -47,7 +48,5 @@ vars.T_sky = vars.T_o - 8;
 vars.T_ref = 21+273; % Temperature reference [K]
 
 %% intial conditions
-
-
 
 
