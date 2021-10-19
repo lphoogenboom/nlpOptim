@@ -31,22 +31,22 @@ vars.dt = 300; %5 min
 for k=1:47
     vars.I(k)=300+vars.E_1;
     vars.T_o(k)=12+0.1*vars.E_2;
-    vars.qp_dot(k)=5000+10*vars.E_3;
+    vars.qpdot(k)=5000+10*vars.E_3;
 end
 for k=48:96
     vars.I(k)=700+vars.E_1;
     vars.T_o(k)=18+0.1*vars.E_2;
-    vars.qp_dot(k)=25000+10*vars.E_3;
+    vars.qpdot(k)=25000+10*vars.E_3;
 end
 for k=97:144
     vars.I(k)=300+vars.E_1;
     vars.T_o(k)=17+0.1*vars.E_2;
-    vars.qp_dot(k)=20000+10*vars.E_3;
+    vars.qpdot(k)=20000+10*vars.E_3;
 end
 vars.T_o = vars.T_o + 273;
-vars.T_sky = vars.T_o - 8;
-vars.T_ref = 21+273; % Temperature reference [K]
+vars.Tsky = vars.T_o - 8;
+vars.Tref = 21+273; % Temperature reference [K]
 
 %% intial conditions
-
-TaEv([],[],vars,1)
+%test line 
+TaEv([1,1,1,1]',1/2,vars,1)
