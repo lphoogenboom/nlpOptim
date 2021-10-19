@@ -1,4 +1,4 @@
-function [Tw1; Tw2 ; Tw3 ] = TwEv(x,v,vars,k)
+function [Tw1, Tw2, Tw3] = TwEv(x,v,vars,k)
 %T1 Summary of this function goes here
 %   Detailed explanation goes here
     lamda = vars.lambda;
