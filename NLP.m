@@ -39,3 +39,5 @@ for k=97:144
     vars.T_o(k)=17+0.1*vars.E_2;
     vars.qp_dot(k)=20000+10*vars.E_3;
 end
+
+T_o = T_o+273;
