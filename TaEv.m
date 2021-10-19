@@ -2,7 +2,7 @@ function Ta = TaEv(x,u,vars,k)
 %TA Summary of this function goes here
     % x = [Ta T1 T2 T3]^T
     rhoa = vars.rhoa;
-    qdotp = vars.qdotp(k);
+    qpdot = vars.qpdot(k);
     Ca = vars.Ca;
     Va = vars.Va;
     T_o = vars.V_o(k);
