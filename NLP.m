@@ -9,9 +9,12 @@ vars.C_a = 1005;     % Specific heat {J/(kg K)}
 vars.rho_a = 1.2;    % specific mass [kg/m^3]   
 vars.alpha_a = NaN;  % Absorbation [-]
 vars.tau_a = NaN;    % Transmittance [-]
-vars.phi = 3;        %Area m^2
-
-
+vars.phi = 3;        % cross flow area m^2
+vars.g = 9.81;       % gravity [m/s^2]
+vars.H = 5;           % tower height [m]   
+vars.h_a = 5;        % heat transfer coefficient [W/(m^2*K)]
+vars.h_o = 25;        % heat transfer coefficient [W/(m^2*K)]
+vars.lambda = 4.5*10^-8; %het transfer coefficient [W/(m^2K^4)]
 
 vars.V_w = [17.5,15,80];     % Volume [m^3]
 vars.A_w = [350,286,286];      % Area [m^2]
@@ -21,7 +24,8 @@ vars.alpha_w = [0.085,0.2,0.6];  % Absorbation [-]
 vars.tau_w = [0.9,NaN,NaN];    % Transmittance [-]
 % with w[1,2,3]=[Facade,Ceiling,Floor]
 
-vars.dt = 300 %5 min
+vars.Beta = 10^6; %penalty factor [K^-2]
+vars.dt = 300; %5 min
 
 %% Iterative variables
 for k=1:47
@@ -41,4 +45,8 @@ for k=97:144
 end
 vars.T_o = vars.T_o + 273;
 vars.T_sky = vars.T_o - 8;
+vars.T_ref = 21+273; % Temperature reference [K]
+
+%% intial conditions
+
 
