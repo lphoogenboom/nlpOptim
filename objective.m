@@ -1,4 +1,4 @@
-function f = objective(x,u,v,vars,k)
+function f = objective(x,u,vars,k)
     
     Tref = vars.Tref;
     Ca = vars.Ca;

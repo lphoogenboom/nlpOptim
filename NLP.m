@@ -49,4 +49,4 @@ vars.Tref = 21+273; % Temperature reference [K]
 
 %% intial conditions
 %test line 
-TaEv([1,1,1,1]',1/2,vars,1)
+% Ta = TaEv([1,1,1,1]',1/2,vars,1);
