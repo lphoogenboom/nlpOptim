@@ -48,5 +48,21 @@ vars.Tsky = vars.T_o - 8;
 vars.Tref = 21+273; % Temperature reference [K]
 
 %% intial conditions
-%test line 
-% Ta = TaEv([1,1,1,1]',1/2,vars,1);
+u0 = 1/2;
+v0 = 1/2;
+
+x0 = [u0 ; v0];
+%% constraints
+ub = [1;1];
+lb = [0;0];
+A = [];
+b = [];
+Aeq = [];
+beq = [];
+
+%% minimization
+k=1;
+x=x0;
+u=u0;
+[x,fval,exitflag,output] = fmincon(@(x)objective(x,u,vars,k),x0,A,b,Aeq,beq,lb,ub);
+
