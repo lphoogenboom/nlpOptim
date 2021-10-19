@@ -13,15 +13,15 @@ vars.phi = 3;        % cross flow area m^2
 vars.g = 9.81;       % gravity [m/s^2]
 vars.H = 5;           % tower height [m]   
 vars.ha = 5;        % heat transfer coefficient [W/(m^2*K)]
-vars.h_o = 25;        % heat transfer coefficient [W/(m^2*K)]
+vars.ho = 25;        % heat transfer coefficient [W/(m^2*K)]
 vars.lambda = 4.5*10^-8; %het transfer coefficient [W/(m^2K^4)]
 
-vars.V_w = [17.5,15,80];     % Volume [m^3]
+vars.V = [17.5,15,80];     % Volume [m^3]
 vars.A = [350,286,286];      % Area [m^2]
-vars.C_w = [900,840,840];     % Specific heat {J/(kg K)}
-vars.rho_w = [2500,2000,2000];    % specific mass [kg/m^3]   
-vars.alpha_w = [0.085,0.2,0.6];  % Absorbation [-]
-vars.tau_w = [0.9,NaN,NaN];    % Transmittance [-]
+vars.C = [900,840,840];     % Specific heat {J/(kg K)}
+vars.rho = [2500,2000,2000];    % specific mass [kg/m^3]   
+vars.alpha = [0.085,0.2,0.6];  % Absorbation [-]
+vars.tau = [0.9,NaN,NaN];    % Transmittance [-]
 % with w[1,2,3]=[Facade,Ceiling,Floor]
 
 vars.Beta = 10^6; %penalty factor [K^-2]
