@@ -1,4 +1,4 @@
-function flow = mdot(u,x,vars,k)
+function flow = mdot(x,u,vars,k)
 %MDOT: mass flow rate of air through thermal tower
     rhoa = vars.rhoa;
     phi = vars.phi;
