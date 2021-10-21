@@ -78,7 +78,7 @@ for i = 1:144
     
     k=1;
     options = optimoptions(@fmincon,'Algorithm','sqp');
-    [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,i),x0,A,b,Aeq,beq,lb,ub,options);
+    [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,i),x0,A,b,Aeq,beq,lb,ub,[],options);
     
     X(:,i) = x;
     F(i) = fval;
@@ -89,3 +89,7 @@ for i = 1:144
     
     
 end
+%%
+N=144;
+x0=[ones(4*N,1)*(16+273);ones(2*N,1)*0.5];
+[x,fval,exitflag,output] = fmincon(@(x)objectivesum(x,vars,N),x0,A,b,Aeq,beq,lb,ub,[],options);
