@@ -6,7 +6,7 @@ function obj = objective(x,T,vars)
         Ca = vars.Ca;
         dt = vars.dt;
         beta = vars.Beta;
-        f = mdot(xTemp,T,vars,i) * Ca * abs(T(1)-Tref*dt+beta*(T(1)-Tref)^2);
+        f = mdot(xTemp,T,vars,i) * Ca * abs(T(1)-Tref)*dt+beta*(T(1)-Tref)^2;
         obj = obj + f;
         
         T = TEv(xTemp,T,vars,i);
