@@ -13,4 +13,6 @@ function Ta = TaEv(xTemp,T,vars,i)
     
     Ta = T(1)+ (dt)/(rhoa*Va*Ca) * (qpdot+mflow*Ca*(T_o-T(1)) + ...
         ha*A(1)*(T(2)-T(1)) + ha*A(2)*(T(3)-T(1)) + ha*A(3)*(T(4)-T(1)));
+
+
 end

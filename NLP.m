@@ -1,7 +1,7 @@
 clear; clc;
 vars = variables();
 
-T = ones(4,1)*(16+273);
+T = ones(4,1)*(289);
 
 x0 = 0.5*ones(288,1);
 
