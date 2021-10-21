@@ -57,7 +57,7 @@ T20 = 16+273;
 T30 = 16+273;
 
 
-x0 = [Ta0 ; T10 ; T20 ; T30; u0 ; v0];
+T0 = [Ta0 ; T10 ; T20 ; T30];
 
 X = zeros(6,144);
 F = zeros(1,144);
@@ -91,9 +91,21 @@ for i = 1:144
 end
 %%
 N=144;
-x0=[ones(4*N,1)*(16+273);ones(2*N,1)*0.5];
+x0=[ones(2*N,1)*0.5];
+T0=[ones(4*N,4)*(16+273)];
 lb=[zeros(length(x0),1)];
-ub=[ones(4*N,1)*(16+273);ones(2*N,1)];
+ub=[ones(length(x0),1)];
 
-[x,fval,exitflag,output] = fmincon(@(x)objectivesum(x,vars,N),x0,A,b,Aeq,beq,lb,ub,[],options);
+[x,fval,exitflag,output] = fmincon(@(x)objectivesum(x,T,vars,N),x0,A,b,Aeq,beq,lb,ub,[],options);
 
+%% Caluclate state evolutions
+T0=[ones(4*N,4)*(16+273)];
+
+T=T0'
+x=x0
+for i = 1:N
+    u=x(i);
+    v=x(i+N);
+    [Tw1,Tw2,Tw3] = TwEv([u,v],T(:,i),vars,i);
+    T(:,i+1) = [TaEv([u,v],T(:,i),vars,i); [Tw1,Tw2,Tw3]'];
+end

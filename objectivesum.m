@@ -1,6 +1,6 @@
-function Objectivetotal = ObjectiveSum(x,vars,N)
+function Objectivetotal = ObjectiveSum(x,T,vars,N)
+    y = 0;   
     for k=1:N
-        y=objective(x,vars,k);
-   end
-   Objectivetotal = sum(y);
+       y= y + objective(x,T,vars,k);
+    end
 end

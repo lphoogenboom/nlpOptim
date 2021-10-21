@@ -1,4 +1,4 @@
-function Ta = TaEv(x,vars,k)
+function Ta = TaEv(x,T,vars,k)
 %TA Summary of this function goes here
     % x = [Ta T1 T2 T3]^T
     rhoa = vars.rhoa;
@@ -9,8 +9,8 @@ function Ta = TaEv(x,vars,k)
     A = vars.A;
     ha = vars.ha;
     dt = vars.dt;
-    mflow = mdot(x,vars,k);
+    mflow = mdot(x,T,vars,k);
     
-    Ta = x(1)+ (dt)/(rhoa*Va*Ca) * (qpdot+mflow*Ca*(T_o-x(1)) + ...
-        ha*A(1)*(x(2)-x(1)) + ha*A(2)*(x(3)-x(1)) + ha*A(3)*(x(4)-x(1)));
+    Ta = T(1)+ (dt)/(rhoa*Va*Ca) * (qpdot+mflow*Ca*(T_o-T(1)) + ...
+        ha*A(1)*(T(2)-T(1)) + ha*A(2)*(T(3)-T(1)) + ha*A(3)*(T(4)-T(1)));
 end
