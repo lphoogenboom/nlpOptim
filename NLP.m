@@ -48,13 +48,13 @@ vars.Tsky = vars.T_o - 8;
 vars.Tref = 21+273; % Temperature reference [K]
 
 %% intial conditions
-u0 = .1;
-v0 = .1;
+u0 = .8;
+v0 = .8;
 
-Ta0 = 16;
-T10 = 16;
-T20 = 16;
-T30 = 16;
+Ta0 = 16+273;
+T10 = 16+273;
+T20 = 16+273;
+T30 = 16+273;
 
 
 x0 = [Ta0 ; T10 ; T20 ; T30; u0 ; v0];
@@ -67,13 +67,18 @@ b = [];
 Aeq = [];
 beq = [];
 
+x = x0;
+
 for i = 1:144
-    ub = [x(1);x(2);x(3);x(4);1;1];
-    lb = [x(1);x(2);x(3);x(4);0;0];
+%     ub = [x(1);x(2);x(3);x(4);1;1];
+%     lb = [x(1);x(2);x(3);x(4);0;0];
+
+    ub = [300;300;300;300;1;1];
+    lb = [273;273;273;273;0;0];
     
     k=1;
-    x=x0;
-    [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,k),x0,A,b,Aeq,beq,lb,ub);
+    options = optimoptions(@fmincon,'Algorithm','sqp');
+    [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,i),x0,A,b,Aeq,beq,lb,ub,options);
     
     X(:,i) = x;
     F(i) = fval;

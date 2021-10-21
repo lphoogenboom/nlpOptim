@@ -6,8 +6,6 @@ function flow = mdot(x,vars,k)
     H = vars.H;
     T_o = vars.T_o(k);
     
-    disp(rhoa)
-    
-    flow = rhoa*x(5)*phi*sqrt(2*g*H*max(0,(x(1)-T_o(k))/x(1)));
+    flow = rhoa*x(5)*phi*sqrt(2*g*H*max(0,(x(1)-T_o)/x(1)));
 end
 
