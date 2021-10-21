@@ -92,4 +92,8 @@ end
 %%
 N=144;
 x0=[ones(4*N,1)*(16+273);ones(2*N,1)*0.5];
+lb=[zeros(length(x0),1)];
+ub=[ones(4*N,1)*(16+273);ones(2*N,1)];
+
 [x,fval,exitflag,output] = fmincon(@(x)objectivesum(x,vars,N),x0,A,b,Aeq,beq,lb,ub,[],options);
+
