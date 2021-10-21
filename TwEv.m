@@ -1,7 +1,6 @@
 function [Tw1, Tw2, Tw3] = TwEv(x,vars,k)
 %T1 Summary of this function goes here
 %   Detailed explanation goes here
-    lambda = vars.lambda;
     I = vars.I(k);
     T_o = vars.T_o(k);
     alpha = vars.alpha;
@@ -9,6 +8,12 @@ function [Tw1, Tw2, Tw3] = TwEv(x,vars,k)
     ho = vars.ho;
     V = vars.V;
     tau = vars.tau(1);
+    A = vars.A;
+    dt = vars.dt;
+    rho = vars.rho;
+    C = vars.C;
+    lambda = vars.lambda;
+    ha = vars.ha;
     
     Tw1 = x(2) + A(1) * dt/(rho(1)*V(1)*C(1)) * (x(6)*I*alpha(1) + ...
         lambda*(Tsky^4-x(2)^4)) + ho*(T_o-x(2)) + ha*(x(2)-x(1));

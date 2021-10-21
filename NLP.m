@@ -14,7 +14,7 @@ vars.g = 9.81;       % gravity [m/s^2]
 vars.H = 5;           % tower height [m]   
 vars.ha = 5;        % heat transfer coefficient [W/(m^2*K)]
 vars.ho = 25;        % heat transfer coefficient [W/(m^2*K)]
-vars.lambda = 4.5*10^-8; %het transfer coefficient [W/(m^2K^4)]
+vars.lambda = 4.5*10^-8; %heat transfer coefficient [W/(m^2K^4)]
 
 vars.V = [17.5,15,80];     % Volume [m^3]
 vars.A = [350,286,286];      % Area [m^2]
@@ -48,8 +48,8 @@ vars.Tsky = vars.T_o - 8;
 vars.Tref = 21+273; % Temperature reference [K]
 
 %% intial conditions
-u0 = 1/2;
-v0 = 1/2;
+u0 = .1;
+v0 = .1;
 
 Ta0 = 16;
 T10 = 16;
@@ -76,5 +76,11 @@ for i = 1:144
     [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,k),x0,A,b,Aeq,beq,lb,ub);
     
     X(:,i) = x;
-    F(i) = fval;  
+    F(i) = fval;
+    
+    [t1,t2,t3] = TwEv(x,vars,i);
+    x(1) = TaEv(x,vars,i);
+    x(2:4) = [t1 t2 t3]';
+    
+    
 end
