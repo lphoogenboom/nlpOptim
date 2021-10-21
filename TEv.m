@@ -1,7 +1,7 @@
-function T = TEv(x,T,vars,k)
+function T = TEv(xTemp,T,vars,i)
 
-    Ta = TaEv(x,T,vars,k);
-    [T1,T2,T3] = TwEv(x,T,vars,k);
+    Ta = TaEv(xTemp,T,vars,i);
+    [T1,T2,T3] = TwEv(xTemp,T,vars,i);
     
     T = [Ta T1 T2 T3]';
 end
