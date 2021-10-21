@@ -1,4 +1,4 @@
-function flow = mdot(x,u,vars,k)
+function flow = mdot(x,vars,k)
 %MDOT: mass flow rate of air through thermal tower
     rhoa = vars.rhoa;
     phi = vars.phi;
@@ -8,6 +8,6 @@ function flow = mdot(x,u,vars,k)
     
     disp(rhoa)
     
-    flow = rhoa*u*phi*sqrt(2*g*H*max(0,(x(1)-T_o(k))/x(1)));
+    flow = rhoa*x(5)*phi*sqrt(2*g*H*max(0,(x(1)-T_o(k))/x(1)));
 end
 

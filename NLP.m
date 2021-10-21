@@ -73,8 +73,7 @@ for i = 1:144
     
     k=1;
     x=x0;
-    u=u0;
-    [x,fval,exitflag,output] = fmincon(@(x)objective(x,u,vars,k),x0,A,b,Aeq,beq,lb,ub);
+    [x,fval,exitflag,output] = fmincon(@(x)objective(x,vars,k),x0,A,b,Aeq,beq,lb,ub);
     
     X(:,i) = x;
     F(i) = fval;  
