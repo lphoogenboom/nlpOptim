@@ -51,18 +51,31 @@ vars.Tref = 21+273; % Temperature reference [K]
 u0 = 1/2;
 v0 = 1/2;
 
-x0 = [u0 ; v0];
-%% constraints
-ub = [1;1];
-lb = [0;0];
+Ta0 = 16;
+T10 = 16;
+T20 = 16;
+T30 = 16;
+
+
+x0 = [Ta0 ; T10 ; T20 ; T30; u0 ; v0];
+
+X = zeros(6,144);
+F = zeros(1,144);
+
 A = [];
 b = [];
 Aeq = [];
 beq = [];
 
-%% minimization
-k=1;
-x=x0;
-u=u0;
-[x,fval,exitflag,output] = fmincon(@(x)objective(x,u,vars,k),x0,A,b,Aeq,beq,lb,ub);
-
+for i = 1:144
+    ub = [x(1);x(2);x(3);x(4);1;1];
+    lb = [x(1);x(2);x(3);x(4);0;0];
+    
+    k=1;
+    x=x0;
+    u=u0;
+    [x,fval,exitflag,output] = fmincon(@(x)objective(x,u,vars,k),x0,A,b,Aeq,beq,lb,ub);
+    
+    X(:,i) = x;
+    F(i) = fval;  
+end
