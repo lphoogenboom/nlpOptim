@@ -36,5 +36,6 @@ hold on; grid on;
 plot(t,UV(1,:))
 plot(t,UV(2,:))
 legend("u(t)","v(t)")
-title(sprintf("Total energy: %1.3e J",fval))
+title = "Total energy:
+title("Total energy")
 
