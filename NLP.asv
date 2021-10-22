@@ -23,19 +23,22 @@ options = optimoptions(@fmincon,'Algorithm','sqp','MaxFunctionEvaluations',1e5,'
 
 UV = [x(1:144) ;  x(145:288)];
 
-time = clock();
-time = string(time(1))+'-'+string(time(2))+'-'+string(time(3))+"--"+...
-    string(time(4))+":"+string(time(5))+":"+...
-    string(cast(time(6),'uint8'))+".mat";
-save(time);
+% time = clock();
+% time = string(time(1))+'-'+string(time(2))+'-'+string(time(3))+"--"+...
+%     string(time(4))+":"+string(time(5))+":"+...
+%     string(cast(time(6),'uint8'))+".mat";
+% save(time);
 
 %% Visuals
-
+TempPlot(UV(1,:),UV(2,:),fval) %plots T of u and v
+x0=[]
+[x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
+UV = [x(1:144) ;  x(145:288)];
+%%
 figure(1)
 hold on; grid on;
 plot(t,UV(1,:))
 plot(t,UV(2,:))
 legend("u(t)","v(t)")
-title = "Total energy:
-title("Total energy")
+title(sprintf("Total energy: %1.3e J",fval))
 

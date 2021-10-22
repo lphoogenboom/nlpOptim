@@ -1,0 +1,28 @@
+function Plot = PlotResult(u,v,fval)
+    vars = variables();
+    t = [1:144];
+
+    T= zeros(4,144);
+    T(:,1) = [16 16 16 16]' +273;
+
+    for i = 1:143
+       T(:,i+1) = TEv([u(i) v(i)]',T(:,i),vars,i) ;
+    end
+
+    figure(1)
+    hold on;
+    plot(t,T(1,:)-273)
+    plot(t,T(2,:)-273)
+    plot(t,T(3,:)-273)
+    plot(t,T(4,:)-273)
+    plot(t,ones(1,length(t))*(vars.Tref-273),"--")
+    legend("Ta","T1","T2","T3","Tref")
+    title(sprintf("Temperaturs with total energy %1.3e J",fval))
+    
+    figure(2)
+    hold on; grid on;
+    plot(t,UV(1,:))
+    plot(t,UV(2,:))
+    legend("u(t)","v(t)")
+    title(sprintf("Total energy: %1.3e J",fval))
+end
