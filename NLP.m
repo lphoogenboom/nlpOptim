@@ -5,9 +5,9 @@ T = ones(4,1)*(289);
 Tevolve = zeros(4,144);
 t = [1:144];
 
-u0 = 1*ones(144,1);
-v0 = 1*ones(144,1);
-x0 = [u0 ; v0]'; clear u0 v0;
+u0 = 0.9;
+v0 = 0.1;
+x0 = [u0*ones(144,1) ; 0*ones(144,1)]';
 
 A = [];
 b = [];
@@ -17,12 +17,17 @@ beq = [];
 ub = ones(288,1);
 lb = zeros(288,1);
 
+% @(x)nonLinCon(x,T,vars)
 options = optimoptions(@fmincon,'Algorithm','sqp','MaxFunctionEvaluations',1e5,'MaxIterations',1500);
-[x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,@(x)nonLinCon(x,T,vars),options);
+[x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
 
 UV = [x(1:144) ;  x(145:288)];
 
-saveData()
+time = clock();
+time = string(time(1))+'-'+string(time(2))+'-'+string(time(3))+"--"+...
+    string(time(4))+":"+string(time(5))+":"+...
+    string(cast(time(6),'uint8'))+".mat";
+save(time);
 
 %% Visuals
 
