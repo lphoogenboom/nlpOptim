@@ -1,4 +1,4 @@
-function Plot = PlotResult(u,v,fval)
+function Plot = PlotResult(u,v,fval,u0,v0)
     vars = variables();
     t = [1:144];
 
@@ -6,23 +6,36 @@ function Plot = PlotResult(u,v,fval)
     T(:,1) = [16 16 16 16]' +273;
 
     for i = 1:143
-       T(:,i+1) = TEv([u(i) v(i)]',T(:,i),vars,i) ;
+       f(i)=mdot([u,v],T,vars,i) * Ca * abs(T(1,i)-Tref)*dt+beta*(T(1,i)-Tref)^2;
+       T(:,i+1) = TEv([u(i) v(i)]',T(:,i),vars,i) ;  
     end
-
-    figure(1)
+    f(144)=mdot([u,v],T,vars,i) * Ca * abs(T(1,i)-Tref)*dt+beta*(T(1,i)-Tref)^2;
+    
+    figure()
     hold on;
     plot(t,T(1,:)-273)
     plot(t,T(2,:)-273)
     plot(t,T(3,:)-273)
     plot(t,T(4,:)-273)
     plot(t,ones(1,length(t))*(vars.Tref-273),"--")
+    xlabel(["timestep [k]"])
+    ylabel(["Degrees [",char(176),"C]"])
     legend("Ta","T1","T2","T3","Tref")
-    title(sprintf("Temperaturs with total energy %1.3e J",fval))
+    title(sprintf("Temperatures with total energy %1.5e J, initial (u,v)=(%1.1f %1.1f)",fval,u0,v0))
     
-    figure(2)
+    figure()
     hold on; grid on;
-    plot(t,UV(1,:))
-    plot(t,UV(2,:))
+    plot(t,u)
+    plot(t,v)
+    xlabel("timestep [k]")
     legend("u(t)","v(t)")
-    title(sprintf("Total energy: %1.3e J",fval))
+    title(sprintf("Total energy: %1.5e J initial (u,v)=(%1.1f %1.1f)",fval,u0,v0))
+    
+    figure()
+    hold on; grid on;
+    plot(t,f)
+    xlabel("timestep [k]")
+    legend("Energy [J]")
+    title("Energy at time k")
+    
 end

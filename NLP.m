@@ -36,21 +36,21 @@ u0 = 0;
 v0 = 1;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
-functionvalues(2)=fval
+functionvalues(2)=fval;
 UV = [x(1:144) ;  x(145:288)];
 PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
 u0 = 0;
 v0 = 0;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
-functionvalues(3)=fval
+functionvalues(3)=fval;
 UV = [x(1:144) ;  x(145:288)];
 PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
 u0 = 1;
 v0 = 1;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
-functionvalues(4)=fval
+functionvalues(4)=fval;
 UV = [x(1:144) ;  x(145:288)];
 PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
 %%
