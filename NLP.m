@@ -31,27 +31,34 @@ UV = [x(1:144) ;  x(145:288)];
 
 % different starting points
 functionvalues(1)=fval
-PlotResult(UV(1,:),UV(2,:),fval,u0,v0) %plots T of u and v
+uvoptimal=UV;
+PlotResult(UV(1,:),UV(2,:),u0,v0) %plots T of u and v
 u0 = 0;
 v0 = 1;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
 functionvalues(2)=fval;
 UV = [x(1:144) ;  x(145:288)];
-PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
+PlotResult(UV(1,:),UV(2,:),u0,v0)
 u0 = 0;
 v0 = 0;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
 functionvalues(3)=fval;
 UV = [x(1:144) ;  x(145:288)];
-PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
+PlotResult(UV(1,:),UV(2,:),u0,v0)
 u0 = 1;
 v0 = 1;
 x0 = [u0*ones(144,1) ; v0*ones(144,1)]';
 [x,fval,exitflag,output] = fmincon(@(x)objective(x,T,vars),x0,A,b,Aeq,beq,lb,ub,[],options);
 functionvalues(4)=fval;
 UV = [x(1:144) ;  x(145:288)];
-PlotResult(UV(1,:),UV(2,:),fval,u0,v0)
-%%
-
+PlotResult(UV(1,:),UV(2,:),u0,v0)
+%% Plot no control case
+u_noc = ones(1,144);
+v_noc = ones(1,144);
+% get combined energy plot, replace last argument with optimal values with
+% mdot contstraint
+CombinedEnergyPlot(UV,[u_noc,v_noc],[zeros(1,144),zeros(1,144)])
+% get temperature plot
+PlotResult(u_noc,v_noc,u0,v0)

@@ -1,4 +1,4 @@
-function Plot = PlotResult(u,v,fval,u0,v0)
+function Plot = PlotResult(u,v,u0,v0)
     vars = variables();
     t = [1:144];
 
@@ -10,7 +10,7 @@ function Plot = PlotResult(u,v,fval,u0,v0)
        T(:,i+1) = TEv([u(i) v(i)]',T(:,i),vars,i) ;  
     end
     f(144)=mdot([u,v],T,vars,i) * vars.Ca * abs(T(1,i)-vars.Tref)*vars.dt+vars.Beta*(T(1,i)-vars.Tref)^2;
-    
+    fval=sum(f);
     figure()
     hold on;
     plot(t,T(1,:)-273)
