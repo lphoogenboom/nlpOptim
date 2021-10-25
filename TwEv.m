@@ -1,6 +1,5 @@
 function [Tw1, Tw2, Tw3] = TwEv(xTemp,T,vars,i)
-%T1 Summary of this function goes here
-%   Detailed explanation goes here
+    % Single temp evolution for all Tw's
     I = vars.I(i);
     T_o = vars.T_o(i);
     alpha = vars.alpha;

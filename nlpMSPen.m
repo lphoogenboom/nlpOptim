@@ -16,7 +16,7 @@ lb = zeros(288,1);% 0 upperbound for u&v
 
 options = optimoptions(@fmincon,'Algorithm','sqp','MaxFunctionEvaluations',...
     1e5,'MaxIterations',3000); % use sqp
-problem = createOptimProblem('fmincon','objective',@(x)objective(x,T,vars),...
+problem = createOptimProblem('fmincon','objective',@(x)objective(x,T,vars,true),...
     'x0',x0,'lb',lb,'ub',ub,'options',options);
 
 ms = MultiStart;
@@ -25,11 +25,11 @@ ms = MultiStart;
 UV = [x(1:144)' ;  x(145:288)']; %[u(k) ; v(k)] evolution
 
 %% Save Data as date--time.mat
-time = clock();
-time = string(time(1))+'-'+string(time(2))+'-'+string(time(3))+"--"+...
-    string(time(4))+":"+string(time(5))+":"+...
-    string(cast(time(6),'uint8'))+".mat";
-save(time); clear time;
+% time = clock();
+% time = './data/'+string(time(1))+'-'+string(time(2))+'-'+string(time(3))+"--"+...
+%     string(time(4))+":"+string(time(5))+":"+...
+%     string(cast(time(6),'uint8'))+".mat";
+% save(time); clear time;
 
 %% Sim Optimal System
 [Tevol, flow] = simOpt(UV,vars);%[Temp Evolution, airflow evolution]

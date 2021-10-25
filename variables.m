@@ -1,6 +1,6 @@
 function vars = variables()
-
-    %% Variables
+    % find system variables and store in struct "vars"
+    % Variables
     vars.E_1 = 8;
     vars.E_2 = 4;
     vars.E_3 = 13;
@@ -29,7 +29,7 @@ function vars = variables()
     vars.Beta = 10^6; %penalty factor [K^-2]
     vars.dt = 300; %5 min
 
-    %% Iterative variables
+    % Iterative variables
     for k=1:47
         vars.I(k)=300+vars.E_1;
         vars.T_o(k)=12+0.1*vars.E_2;
