@@ -4,6 +4,6 @@ for i = 1:144
     massFlow(i) = mdot(x,T,vars,i);
 end
 
-c = 0.5 - massFlow;
+c = 0.5*300 - massFlow;
 ceq = [];
 end
