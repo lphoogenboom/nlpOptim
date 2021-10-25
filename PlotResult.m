@@ -18,8 +18,8 @@ function Plot = PlotResult(u,v,u0,v0)
     plot(t,T(3,:)-273)
     plot(t,T(4,:)-273)
     plot(t,ones(1,length(t))*(vars.Tref-273),"--")
-    xlabel(["timestep [k]"])
-    ylabel(["Degrees [",char(176),"C]"])
+    xlabel(["Timestep [k]"])
+    ylabel(["Temperature ["+char(176)+"C]"])
     legend("Ta","T1","T2","T3","Tref")
     title(sprintf("Temperatures with total energy %1.5e J, initial (u,v)=(%1.1f %1.1f)",fval,u0,v0))
     
@@ -35,7 +35,7 @@ function Plot = PlotResult(u,v,u0,v0)
     hold on; grid on;
     plot(t,f)
     xlabel("timestep [k]")
-    legend("Energy [J]")
+    ylabel("Energy [J]")
     title("Energy at time k")
     
 end
